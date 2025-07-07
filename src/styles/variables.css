@@ -1,0 +1,66 @@
+/* src/styles/variables.css */
+/* src/styles/variables.css */
+
+:root {
+  /* Base Colors */
+  --bg: #ffffff;
+  --text: #1e1e1e;
+  --primary: #6a0dad;
+  --accent: #a259ff;
+  --placeholder: #888;
+  --border: #e5e7eb;
+
+  /* Layout Colors */
+  --search-bg: #f2f2f2;
+  --sidebar-bg: #f9fafb;
+  --header-bg: #f8f9fb;
+  --section-title: #007acc;
+
+  /* Footer */
+  --footer-bg: #f9fafb;
+  --footer-text: #1e1e1e;
+  --footer-border: #e5e7eb;
+  --footer-link: #1d4ed8;
+
+  /* Button & Pagination */
+  --button-bg: #6a0dad;
+  --button-text: #ffffff;
+  --button-hover: #5a00b0;
+  --button-disabled-bg: #cccccc;
+  --button-disabled-text: #666666;
+
+  /* Transitions */
+  --transition-duration: 0.3s;
+}
+
+[data-theme="dark"] {
+  /* Base Colors */
+  --bg: #0f172a;
+  --text: #ffffff;
+  --primary: #a259ff;
+  --accent: #7f39fb;
+  --placeholder: #aaa;
+  --border: #334155;
+
+  /* Layout Colors */
+  --search-bg: #1e293b;
+  --sidebar-bg: #111827;
+  --header-bg: #0f172a;
+  --section-title: #6cd3ff;
+
+  /* Footer */
+  --footer-bg: #111827;
+  --footer-text: #d1d5db;
+  --footer-border: #374151;
+  --footer-link: #6cd3ff;
+
+  /* Button & Pagination */
+  --button-bg: #7f39fb;
+  --button-text: #ffffff;
+  --button-hover: #9c5bff;
+  --button-disabled-bg: #2d2d2d;
+  --button-disabled-text: #777;
+
+  /* Transitions */
+  --transition-duration: 0.3s;
+}

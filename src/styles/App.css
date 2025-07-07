@@ -1,0 +1,51 @@
+/* src/styles/App.css */
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .main-layout {
+    display: flex;
+    flex: 1;
+    min-height: 100vh;
+  }
+  
+  .navbar {
+    width: 250px;
+    flex-shrink: 0;
+  }
+
+  /* Shift main content if sidebar is fixed */
+  @media screen and (min-width: 768px) {
+    .main-content {
+      margin-left: 250px;
+    }
+
+    .page-body {
+        
+        padding: 120px 1.5rem 2rem;
+      }
+  }
+  
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg);
+  }
+  
+  .page-body {
+    flex: 1;
+    /* padding: 120px 1.5rem 2rem; */
+  }
+
+  .page-body p.error-message {
+    color: red;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+    height: 50vh;
+    padding-top: 5rem;
+  }

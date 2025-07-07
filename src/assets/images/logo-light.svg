@@ -1,0 +1,9 @@
+<!-- src/assets/images/logo-light.svg -->
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <text x="10" y="40" font-family="Poppins, sans-serif" font-size="36" font-weight="600" fill="#6A0DAD">
+    Purple
+  </text>
+  <text x="120" y="40" font-family="Poppins, sans-serif" font-size="36" font-weight="600" fill="#A259FF">
+    Flix
+  </text>
+</svg>

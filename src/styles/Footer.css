@@ -1,0 +1,59 @@
+
+/* src/components/Footer.css */
+
+.app-footer {
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    border-top: 1px solid var(--footer-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Link style */
+  .app-footer a {
+    color: var(--footer-link);
+    text-decoration: underline;
+    transition: color 0.3s;
+  }
+  
+  .app-footer a:hover {
+    color: var(--accent);
+  }
+  
+  .footer-note {
+    margin-top: 0.5rem;
+    font-size: 13px;
+  }
+  
+  /* ---------- Mobile-specific tweaks ---------- */
+  @media screen and (max-width: 480px) {
+    .app-footer {
+      padding: 1.5rem 0.5rem;
+      font-size: 13px;
+    }
+  
+    .footer-note {
+      font-size: 12px;
+    }
+  }
+  
+  /* ---------- Medium to large screen layout ---------- */
+  @media screen and (min-width: 768px) {
+    .app-footer {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+      padding: 2rem 4rem;
+    }
+  
+    .footer-note {
+      margin-top: 0;
+      font-size: 14px;
+    }
+  }
+  
