@@ -7,7 +7,8 @@ import "../styles/MovieDetails.css";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const API_KEY = "5e3b94329fcd0b4985881ed512471b73";
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
 
 const MovieDetails = () => {
   const { id } = useParams();
