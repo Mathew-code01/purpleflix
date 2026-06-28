@@ -1,51 +1,83 @@
 /* src/styles/App.css */
-.app {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  .main-layout {
-    display: flex;
-    flex: 1;
-    min-height: 100vh;
-  }
-  
-  .navbar {
-    width: 250px;
-    flex-shrink: 0;
+/* src/styles/App.css */
+/* =====================================================
+   APP SHELL — PurpleFlix Design System
+===================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── App shell ── */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+/*
+  Body = sidebar + main, in a row.
+  The header is NOT inside app-body — it sits above.
+  app-body grows to fill remaining viewport height.
+*/
+.app-body {
+  display: flex;
+  flex: 1;
+  /* Offset the fixed header (64px) */
+  margin-top: 64px;
+  min-height: calc(100dvh - 64px);
+  position: relative;
+}
+
+/* Main content area */
+.app-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  /* On desktop, offset for the fixed sidebar width */
+  margin-left: 260px;
+  transition: margin-left var(--transition-normal);
+}
+
+.app-page {
+  flex: 1;
+}
+
+/* ── When sidebar is open on mobile ── */
+@media (max-width: 1024px) {
+  .app-main {
+    margin-left: 0;
   }
 
-  /* Shift main content if sidebar is fixed */
-  @media screen and (min-width: 768px) {
-    .main-content {
-      margin-left: 250px;
-    }
+  /* Prevent body scroll when sidebar is open */
+  .app-body--sidebar-open body {
+    overflow: hidden;
+  }
+}
 
-    .page-body {
-        
-        padding: 120px 1.5rem 2rem;
-      }
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .app-main {
+    transition: none;
   }
-  
-  .main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--bg);
-  }
-  
-  .page-body {
-    flex: 1;
-    /* padding: 120px 1.5rem 2rem; */
-  }
-
-  .page-body p.error-message {
-    color: red;
-    text-align: center;
-    justify-content: center;
-    justify-items: center;
-    width: 100%;
-    height: 50vh;
-    padding-top: 5rem;
-  }
+}

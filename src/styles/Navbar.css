@@ -1,457 +1,300 @@
 /* src/styles/Navbar.css */
+/* =====================================================
+   NAVBAR / SIDEBAR — PurpleFlix Design System
+===================================================== */
 
-/* ===================================
-   PURPLEFLIX SIDEBAR
-=================================== */
-
-
-.navbar {
-
-
-position:fixed;
-
-top:0;
-left:0;
-
-height:100vh;
-
-width:270px;
-
-
-background:var(--bg-sidebar);
-
-
-border-right:
-1px solid var(--border-color);
-
-
-display:flex;
-
-flex-direction:column;
-
-
-z-index:var(--z-sidebar);
-
-
-backdrop-filter:
-blur(18px);
-
-
-transition:
-transform var(--transition-normal),
-background var(--transition-normal);
-
-
-
+/* ── Backdrop ── */
+.nb-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-sidebar) - 1);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  animation: nb-backdrop-in 200ms ease both;
 }
 
-
-
-
-
-/* ===============================
-   BRAND
-================================ */
-
-
-.navbar-top{
-
-
-height:90px;
-
-display:flex;
-
-align-items:center;
-
-padding:
-var(--space-5);
-
-
-border-bottom:
-1px solid var(--border-color);
-
-
+@keyframes nb-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
+/* ── Sidebar panel ── */
+.nb-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 260px;
+  z-index: var(--z-sidebar);
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 
-
-.navbar-brand{
-
-display:flex;
-
-align-items:center;
-
+  /* Desktop: always visible (no transform needed) */
+  transform: translateX(0);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
+/*
+  On tablets/mobile the sidebar is off-screen by default
+  and slides in when open.
+*/
+@media (max-width: 1024px) {
+  .nb-sidebar {
+    transform: translateX(-100%);
+    box-shadow: none;
+  }
 
-.navbar-logo{
-
-
-width:150px;
-
-height:auto;
-
-
+  .nb-sidebar--open {
+    transform: translateX(0);
+    box-shadow: var(--shadow-lg);
+  }
 }
 
-
-
-/* ===============================
- SCROLL
-================================ */
-
-
-.navbar-scroll{
-
-
-flex:1;
-
-overflow-y:auto;
-
-
-padding:
-var(--space-4);
-
-
-
-scrollbar-width:none;
-
-
+/* ── Sidebar header ── */
+.nb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-4);
+  height: 64px;           /* matches app header height */
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+  background: var(--bg-sidebar);
 }
 
-
-.navbar-scroll::-webkit-scrollbar{
-
-display:none;
-
+.nb-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  outline-offset: 3px;
 }
 
-
-
-
-
-/* ===============================
- GROUP
-================================ */
-
-
-.nav-group h3{
-
-
-font-size:12px;
-
-text-transform:uppercase;
-
-letter-spacing:.08em;
-
-
-color:
-var(--text-muted);
-
-
-margin-bottom:
-var(--space-3);
-
-
-padding-left:
-var(--space-3);
-
-
+.nb-logo-link:focus-visible {
+  outline: 2px solid var(--color-primary);
 }
 
-
-
-
-.nav-group ul{
-
-
-list-style:none;
-
-padding:0;
-
-margin:0;
-
-
+.nb-logo-img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
-
-
-
-/* ===============================
- ITEMS
-================================ */
-
-
-.nav-item{
-
-
-width:100%;
-
-
-height:44px;
-
-
-display:flex;
-
-align-items:center;
-
-
-gap:14px;
-
-
-
-border:none;
-
-background:transparent;
-
-
-color:
-var(--text-secondary);
-
-
-
-border-radius:
-var(--radius-md);
-
-
-
-cursor:pointer;
-
-
-
-padding:
-0 var(--space-4);
-
-
-
-font-size:14px;
-
-
-
-transition:
-all var(--transition-fast);
-
-
-
+/* Close button (always visible in sidebar header) */
+.nb-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color      var(--transition-fast);
+  flex-shrink: 0;
 }
 
-
-
-
-
-.nav-item:hover{
-
-
-background:
-var(--color-primary-soft);
-
-
-color:
-var(--color-primary);
-
-
-
+.nb-close-btn:hover {
+  background: var(--bg-elevated);
+  color: var(--color-primary);
 }
 
-
-
-
-
-.nav-item.active{
-
-
-background:
-var(--color-primary);
-
-
-color:
-var(--text-inverse);
-
-
-
-box-shadow:
-var(--shadow-md);
-
-
+.nb-close-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
-
-
-
-.nav-icon{
-
-
-font-size:18px;
-
-
-display:flex;
-
-
+/* ── Scrollable body ── */
+.nb-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-3) 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
 }
 
-
-
-
-.nav-label{
-
-
-flex:1;
-
-text-align:left;
-
-
+.nb-scroll::-webkit-scrollbar       { width: 4px; }
+.nb-scroll::-webkit-scrollbar-track { background: transparent; }
+.nb-scroll::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 99px;
 }
 
-
-
-
-
-.nav-divider{
-
-
-height:1px;
-
-
-background:
-var(--border-color);
-
-
-margin:
-var(--space-5) 0;
-
-
+/* ── Section group ── */
+.nb-group {
+  padding: var(--space-2) 0;
 }
 
-
-
-
-
-/* ===============================
- FOOTER
-================================ */
-
-
-
-.navbar-footer{
-
-
-padding:
-var(--space-5);
-
-
-border-top:
-1px solid var(--border-color);
-
-
-display:flex;
-
-flex-direction:column;
-
-
+.nb-group-label {
+  font-family: var(--font-family);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: var(--space-2) var(--space-5) var(--space-1);
+  user-select: none;
 }
 
-
-
-.navbar-footer span{
-
-
-font-weight:700;
-
-color:
-var(--text-primary);
-
-
+/* ── Divider ── */
+.nb-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: var(--space-2) var(--space-4);
 }
 
-
-
-.navbar-footer small{
-
-
-color:
-var(--text-muted);
-
-
+/* ── List ── */
+.nb-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-
-
-
-
-/* ===============================
- MOBILE
-================================ */
-
-
-
-.navbar-overlay{
-
-
-position:fixed;
-
-
-inset:0;
-
-
-background:
-rgba(0,0,0,.45);
-
-
-backdrop-filter:
-blur(6px);
-
-
-
-z-index:
-calc(var(--z-sidebar) - 1);
-
-
-
+/* ── Nav item button ── */
+.nb-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  height: 40px;
+  padding: 0 var(--space-4);
+  border: none;
+  background: transparent;
+  font-family: var(--font-family);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-align: left;
+  border-radius: 0;
+  position: relative;
+  transition:
+    background var(--transition-fast),
+    color      var(--transition-fast);
 }
 
-
-
-
-
-@media(max-width:900px){
-
-
-.navbar{
-
-
-transform:
-translateX(-100%);
-
-
+.nb-item:hover {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
 }
 
-
-
-.navbar.open{
-
-
-transform:
-translateX(0);
-
-
+.nb-item:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--color-primary);
 }
 
-
-
+/* Active state */
+.nb-item--active {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-weight: 700;
 }
 
-
-
-
-
-@media(min-width:901px){
-
-
-.navbar-overlay{
-
-display:none;
-
+/* Active left accent bar */
+.nb-item--active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--color-primary);
 }
 
+/* Active dot (right side) */
+.nb-item-dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  margin-left: auto;
+  flex-shrink: 0;
+  animation: nb-dot-in 200ms ease both;
+}
 
+@keyframes nb-dot-in {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* Icon */
+.nb-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  font-size: 14px;
+  color: inherit;
+  opacity: 0.75;
+  transition: opacity var(--transition-fast);
+}
+
+.nb-item:hover .nb-item-icon,
+.nb-item--active .nb-item-icon {
+  opacity: 1;
+}
+
+/* Label */
+.nb-item-label {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Footer ── */
+.nb-footer {
+  flex-shrink: 0;
+  padding: var(--space-3) var(--space-5);
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-sidebar);
+}
+
+.nb-footer-text {
+  font-family: var(--font-family);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.nb-footer-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nb-footer-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .nb-sidebar,
+  .nb-backdrop,
+  .nb-item,
+  .nb-close-btn {
+    transition: none;
+    animation: none;
+  }
+
+  .nb-item-dot {
+    animation: none;
+  }
 }

@@ -2,81 +2,77 @@
 // src/App.jsx
 
 // src/App.jsx
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useNavigate,
 } from "react-router-dom";
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
+import Header    from "./components/Header";
+import Navbar    from "./components/Navbar";
+import Footer    from "./components/Footer";
+import Home      from "./pages/Home";
 import MovieDetails from "./pages/MovieDetails";
 import "./styles/App.css";
 
-const App = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
-
-  return (
-    <Router>
-      <MainRouter
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
-    </Router>
-  );
-};
-
-const MainRouter = ({
-  sidebarOpen,
-  setSidebarOpen,
-  selectedCategory,
-  setSelectedCategory,
-  searchQuery,
-  setSearchQuery,
-}) => {
+/* ── Inner router — needs useNavigate so lives inside <Router> ── */
+function AppShell() {
   const navigate = useNavigate();
 
-  const handleToggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const [sidebarOpen,      setSidebarOpen]      = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [searchQuery,      setSearchQuery]      = useState("");
 
-  const handleSelectCategory = (category) => {
-    setSelectedCategory(category);
-    setSearchQuery("");
-    setSidebarOpen(false);
-    navigate("/"); // Ensure MovieDetails is hidden
-  };
+  const handleToggleSidebar = useCallback(
+    () => setSidebarOpen((o) => !o),
+    []
+  );
 
-  const handleSearchChange = (query) => {
-    setSearchQuery(query);
-    setSelectedCategory(null);
-    navigate("/"); // Ensure MovieDetails is hidden
-  };
+  const handleCloseSidebar = useCallback(
+    () => setSidebarOpen(false),
+    []
+  );
+
+  const handleSelectCategory = useCallback(
+    (category) => {
+      setSelectedCategory(category);
+      setSearchQuery("");
+      setSidebarOpen(false);
+      navigate("/");
+    },
+    [navigate]
+  );
+
+  const handleSearchChange = useCallback(
+    (query) => {
+      setSearchQuery(query);
+      setSelectedCategory(null);
+      navigate("/");
+    },
+    [navigate]
+  );
 
   return (
-    <div className="app">
+    <div className="app-shell">
       <Header
         onToggleSidebar={handleToggleSidebar}
-        setSearchQuery={handleSearchChange} // ✅ use new search handler
+        sidebarOpen={sidebarOpen}
+        setSearchQuery={handleSearchChange}
       />
 
-      <div className={`main-layout ${sidebarOpen ? "sidebar-open" : ""}`}>
+      <div className={`app-body ${sidebarOpen ? "app-body--sidebar-open" : ""}`}>
+        {/* Sidebar nav */}
         <Navbar
           isOpen={sidebarOpen}
-          onClose={() => setSidebarOpen(false)}
+          onClose={handleCloseSidebar}
           selectedCategory={selectedCategory}
           onSelectCategory={handleSelectCategory}
         />
 
-        <div className="main-content">
-          <div className="page-body">
+        {/* Main content column */}
+        <main className="app-main" id="main-content">
+          <div className="app-page">
             <Routes>
               <Route
                 path="/"
@@ -91,10 +87,16 @@ const MainRouter = ({
             </Routes>
           </div>
           <Footer />
-        </div>
+        </main>
       </div>
     </div>
   );
-};
+}
 
-export default App;
+export default function App() {
+  return (
+    <Router>
+      <AppShell />
+    </Router>
+  );
+}
