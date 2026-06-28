@@ -1,66 +1,329 @@
 /* src/styles/variables.css */
 /* src/styles/variables.css */
 
+/* =====================================================
+   PurpleFlix Design System
+   Production Theme Tokens
+===================================================== */
+
+
+/* ===============================
+   LIGHT THEME
+================================ */
+
 :root {
-  /* Base Colors */
-  --bg: #ffffff;
-  --text: #1e1e1e;
-  --primary: #6a0dad;
-  --accent: #a259ff;
-  --placeholder: #888;
-  --border: #e5e7eb;
 
-  /* Layout Colors */
-  --search-bg: #f2f2f2;
-  --sidebar-bg: #f9fafb;
-  --header-bg: #f8f9fb;
-  --section-title: #007acc;
+  /* ===============================
+     BRAND COLORS
+  ================================ */
 
-  /* Footer */
-  --footer-bg: #f9fafb;
-  --footer-text: #1e1e1e;
-  --footer-border: #e5e7eb;
-  --footer-link: #1d4ed8;
+  --color-primary: #7c3aed;
+  --color-primary-hover: #6d28d9;
+  --color-primary-soft: #ede9fe;
 
-  /* Button & Pagination */
-  --button-bg: #6a0dad;
-  --button-text: #ffffff;
-  --button-hover: #5a00b0;
-  --button-disabled-bg: #cccccc;
-  --button-disabled-text: #666666;
+  --color-secondary: #a855f7;
+  --color-accent: #c084fc;
 
-  /* Transitions */
-  --transition-duration: 0.3s;
+
+  /* ===============================
+     BACKGROUNDS
+  ================================ */
+
+  --bg-page: #fafafa;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-sidebar: #f8fafc;
+  --bg-header: rgba(255,255,255,.85);
+
+
+  /* ===============================
+     TEXT
+  ================================ */
+
+  --text-primary:#111827;
+  --text-secondary:#4b5563;
+  --text-muted:#6b7280;
+  --text-placeholder:#9ca3af;
+  --text-inverse:#ffffff;
+
+
+  /* ===============================
+     BORDERS
+  ================================ */
+
+  --border-color:#e5e7eb;
+  --border-hover:#c4b5fd;
+
+
+  /* ===============================
+     SEARCH
+  ================================ */
+
+  --search-bg:#f3f4f6;
+  --search-border:#e5e7eb;
+
+
+  /* ===============================
+     BUTTONS
+  ================================ */
+
+  --btn-primary-bg:#7c3aed;
+  --btn-primary-hover:#6d28d9;
+  --btn-primary-text:#ffffff;
+
+
+  --btn-disabled-bg:#d1d5db;
+  --btn-disabled-text:#6b7280;
+
+
+  /* ===============================
+     MOVIE CARDS
+  ================================ */
+
+  --movie-overlay:
+  linear-gradient(
+    to top,
+    rgba(0,0,0,.85),
+    transparent
+  );
+
+
+  /* ===============================
+     FOOTER
+  ================================ */
+
+  --footer-bg:#ffffff;
+  --footer-text:#374151;
+  --footer-border:#e5e7eb;
+
+
+  /* ===============================
+     EFFECTS
+  ================================ */
+
+
+  --shadow-sm:
+  0 1px 2px rgba(0,0,0,.05);
+
+
+  --shadow-md:
+  0 10px 25px rgba(0,0,0,.08);
+
+
+  --shadow-lg:
+  0 25px 50px rgba(0,0,0,.12);
+
+
+
+  /* ===============================
+     RADIUS SYSTEM
+  ================================ */
+
+
+  --radius-sm:8px;
+  --radius-md:14px;
+  --radius-lg:22px;
+  --radius-xl:32px;
+
+
+
+  /* ===============================
+     SPACING SYSTEM
+  ================================ */
+
+
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:48px;
+  --space-8:64px;
+
+
+
+  /* ===============================
+     TRANSITIONS
+  ================================ */
+
+
+  --transition-fast:.15s ease;
+  --transition-normal:.3s ease;
+  --transition-slow:.5s ease;
+
+
+
+  /* ===============================
+     Z INDEX
+  ================================ */
+
+
+  --z-base:1;
+  --z-header:50;
+  --z-sidebar:100;
+  --z-modal:500;
+
+
+  /* ===============================
+     TYPOGRAPHY
+  ================================ */
+
+
+  --font-family:
+  Inter,
+  system-ui,
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  sans-serif;
+
+
 }
 
+
+
+/* ===============================
+   DARK THEME
+================================ */
+
+
 [data-theme="dark"] {
-  /* Base Colors */
-  --bg: #0f172a;
-  --text: #ffffff;
-  --primary: #a259ff;
-  --accent: #7f39fb;
-  --placeholder: #aaa;
-  --border: #334155;
 
-  /* Layout Colors */
-  --search-bg: #1e293b;
-  --sidebar-bg: #111827;
-  --header-bg: #0f172a;
-  --section-title: #6cd3ff;
 
-  /* Footer */
-  --footer-bg: #111827;
-  --footer-text: #d1d5db;
-  --footer-border: #374151;
-  --footer-link: #6cd3ff;
+  /* BACKGROUND */
 
-  /* Button & Pagination */
-  --button-bg: #7f39fb;
-  --button-text: #ffffff;
-  --button-hover: #9c5bff;
-  --button-disabled-bg: #2d2d2d;
-  --button-disabled-text: #777;
+  --bg-page:#050816;
+  --bg-surface:#0f172a;
+  --bg-card:#111827;
+  --bg-elevated:#172033;
+  --bg-sidebar:#020617;
 
-  /* Transitions */
-  --transition-duration: 0.3s;
+  --bg-header:
+  rgba(5,8,22,.85);
+
+
+
+  /* TEXT */
+
+
+  --text-primary:#f9fafb;
+  --text-secondary:#cbd5e1;
+  --text-muted:#94a3b8;
+  --text-placeholder:#64748b;
+  --text-inverse:#020617;
+
+
+
+  /* BRAND */
+
+
+  --color-primary:#a855f7;
+  --color-primary-hover:#c084fc;
+  --color-primary-soft:#2e1065;
+
+  --color-secondary:#9333ea;
+  --color-accent:#d8b4fe;
+
+
+
+  /* BORDERS */
+
+  --border-color:#1e293b;
+  --border-hover:#7c3aed;
+
+
+
+  /* SEARCH */
+
+  --search-bg:#111827;
+  --search-border:#334155;
+
+
+
+  /* BUTTON */
+
+
+  --btn-primary-bg:#9333ea;
+  --btn-primary-hover:#a855f7;
+  --btn-primary-text:#ffffff;
+
+
+  --btn-disabled-bg:#374151;
+  --btn-disabled-text:#94a3b8;
+
+
+
+  /* MOVIE */
+
+  --movie-overlay:
+  linear-gradient(
+    to top,
+    rgba(0,0,0,.95),
+    transparent
+  );
+
+
+
+  /* FOOTER */
+
+
+  --footer-bg:#020617;
+  --footer-text:#cbd5e1;
+  --footer-border:#1e293b;
+
+
+
+  /* SHADOWS */
+
+
+  --shadow-sm:
+  0 1px 2px rgba(0,0,0,.4);
+
+
+  --shadow-md:
+  0 10px 30px rgba(0,0,0,.45);
+
+
+  --shadow-lg:
+  0 30px 70px rgba(0,0,0,.6);
+
+}
+
+
+
+
+
+
+/* ===============================
+   GLOBAL THEME TRANSITION
+================================ */
+
+
+* {
+
+  transition:
+  background-color var(--transition-normal),
+  border-color var(--transition-normal),
+  color var(--transition-normal);
+
+}
+
+
+
+/* ===============================
+   SYSTEM DARK MODE FALLBACK
+================================ */
+
+
+@media(prefers-color-scheme:dark){
+
+:root:not([data-theme]){
+
+  --bg-page:#050816;
+  --text-primary:#f9fafb;
+
+}
+
 }
