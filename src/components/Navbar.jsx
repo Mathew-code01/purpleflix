@@ -1,8 +1,8 @@
 // src/components/Navbar.jsx
 import React, { useEffect, useRef } from "react";
 import { useTheme }  from "../theme";
-import logoLight     from "../assets/images/logo-light.svg";
-import logoDark      from "../assets/images/logo-dark.svg";
+import logoLight     from "../assets/images/logo-light.png";
+import logoDark      from "../assets/images/logo-dark.png";
 import {
   FaFire, FaStar, FaClock,
   FaFistRaised, FaHiking, FaTv,
@@ -98,11 +98,7 @@ export default function Navbar({ isOpen, onClose, onSelectCategory, selectedCate
     <>
       {/* Backdrop */}
       {isOpen && (
-        <div
-          className="nb-backdrop"
-          onClick={onClose}
-          aria-hidden="true"
-        />
+        <div className="nb-backdrop" onClick={onClose} aria-hidden="true" />
       )}
 
       {/* Sidebar panel */}
@@ -115,6 +111,14 @@ export default function Navbar({ isOpen, onClose, onSelectCategory, selectedCate
       >
         {/* Sidebar header */}
         <div className="nb-header">
+          {/* Desktop */}
+          <div className="nb-workspace">
+            <h2 className="nb-workspace-title">Browse</h2>
+
+            <p className="nb-workspace-subtitle">Explore the library</p>
+          </div>
+
+          {/* Mobile */}
           <a href="/" className="nb-logo-link" aria-label="PurpleFlix home">
             <img
               src={logo}
@@ -130,7 +134,7 @@ export default function Navbar({ isOpen, onClose, onSelectCategory, selectedCate
             onClick={onClose}
             aria-label="Close navigation"
           >
-            <X size={18} aria-hidden="true" />
+            <X size={18} />
           </button>
         </div>
 
@@ -146,7 +150,10 @@ export default function Navbar({ isOpen, onClose, onSelectCategory, selectedCate
                   item={item}
                   type="category"
                   isActive={isActive("category", item.id)}
-                  onClick={(cat) => { onSelectCategory(cat); onClose(); }}
+                  onClick={(cat) => {
+                    onSelectCategory(cat);
+                    onClose();
+                  }}
                 />
               ))}
             </ul>
@@ -164,7 +171,10 @@ export default function Navbar({ isOpen, onClose, onSelectCategory, selectedCate
                   item={item}
                   type="genre"
                   isActive={isActive("genre", item.id)}
-                  onClick={(cat) => { onSelectCategory(cat); onClose(); }}
+                  onClick={(cat) => {
+                    onSelectCategory(cat);
+                    onClose();
+                  }}
                 />
               ))}
             </ul>

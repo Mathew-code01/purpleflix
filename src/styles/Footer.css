@@ -1,59 +1,328 @@
-
 /* src/styles/Footer.css */
+/* =====================================================
+   FOOTER — PurpleFlix Design System
+   All colours from variables.css tokens only.
+===================================================== */
 
-.app-footer {
-    padding: 2rem 1rem;
-    text-align: center;
-    font-size: 14px;
-    margin-top: auto;
-    background-color: var(--footer-bg);
-    color: var(--footer-text);
-    border-top: 1px solid var(--footer-border);
-    display: flex;
+/* ── Root ── */
+.ft-root {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  border-top: 1px solid var(--footer-border);
+  font-family: var(--font-family);
+}
+
+/* ── Shared inner max-width ── */
+.ft-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+}
+
+/* ── Top band: 3-column grid ── */
+.ft-top {
+  padding: var(--space-7) 0 var(--space-6);
+}
+
+.ft-top .ft-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 1.2fr;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+/* ── Brand column ── */
+.ft-brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.ft-logo-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-primary);
+}
+
+.ft-logo-text {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--footer-text);
+}
+
+.ft-brand-desc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 300px;
+}
+
+/* Social buttons */
+.ft-socials {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.ft-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.ft-social-btn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--text-inverse);
+  transform: translateY(-2px);
+}
+
+.ft-social-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ── Nav column ── */
+.ft-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ft-nav-heading {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-1);
+}
+
+.ft-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ft-nav-link{
+    background:none;
+    border:none;
+    padding:0;
+    cursor:pointer;
+
+    display:inline-flex;
+    align-items:center;
+
+    font-size:13.5px;
+    font-weight:500;
+    color:var(--text-secondary);
+
+    transition:color var(--transition-fast);
+}
+
+.ft-nav-link:hover {
+  color: var(--color-primary);
+}
+
+.ft-nav-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.ft-logo-link{
+    display:inline-flex;
+    align-items:center;
+}
+
+.ft-logo-img{
+    width:145px;
+    height:auto;
+    display:block;
+}
+/* ── Built-by column ── */
+.ft-built {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Portfolio card */
+.ft-portfolio-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-elevated);
+  text-decoration: none;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow   var(--transition-fast),
+    transform    var(--transition-fast);
+}
+
+.ft-portfolio-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.ft-portfolio-card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.ft-portfolio-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: var(--text-inverse);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.ft-portfolio-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.ft-portfolio-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--footer-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ft-portfolio-role {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.ft-portfolio-arrow {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: color var(--transition-fast);
+}
+
+.ft-portfolio-card:hover .ft-portfolio-arrow {
+  color: var(--color-primary);
+}
+
+/* TMDB note */
+.ft-tmdb-note {
+  font-size: 11px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.ft-tmdb-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ft-tmdb-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Bottom bar ── */
+.ft-bottom {
+  border-top: 1px solid var(--footer-border);
+  padding: var(--space-4) 0;
+  background-color: var(--footer-bg);
+}
+
+.ft-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.ft-copy {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.ft-made-with {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.ft-heart {
+  color: var(--color-primary);
+  animation: ft-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ft-pulse {
+  0%, 100% { transform: scale(1);    opacity: 1;   }
+  50%       { transform: scale(1.35); opacity: 0.85; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .ft-top .ft-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .ft-built {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .ft-top .ft-inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .ft-built {
+    grid-column: span 1;
+  }
+
+  .ft-bottom-inner {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    gap: var(--space-2);
   }
-  
-  /* Link style */
-  .app-footer a {
-    color: var(--footer-link);
-    text-decoration: underline;
-    transition: color 0.3s;
-  }
-  
-  .app-footer a:hover {
-    color: var(--accent);
-  }
-  
-  .footer-note {
-    margin-top: 0.5rem;
-    font-size: 13px;
-  }
-  
-  /* ---------- Mobile-specific tweaks ---------- */
-  @media screen and (max-width: 480px) {
-    .app-footer {
-      padding: 1.5rem 0.5rem;
-      font-size: 13px;
-    }
-  
-    .footer-note {
-      font-size: 12px;
-    }
-  }
-  
-  /* ---------- Medium to large screen layout ---------- */
-  @media screen and (min-width: 768px) {
-    .app-footer {
-      flex-direction: row;
-      justify-content: space-between;
-      text-align: left;
-      padding: 2rem 4rem;
-    }
-  
-    .footer-note {
-      margin-top: 0;
-      font-size: 14px;
-    }
-  }
-  
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ft-heart      { animation: none; }
+  .ft-social-btn,
+  .ft-portfolio-card { transition: none; }
+}

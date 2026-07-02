@@ -2,6 +2,7 @@
 /* src/styles/App.css */
 /* =====================================================
    APP SHELL — PurpleFlix Design System
+   All colours from variables.css tokens only.
 ===================================================== */
 
 *,
@@ -19,7 +20,7 @@ html {
 
 body {
   font-family: var(--font-family);
-  background: var(--bg-page);
+  background-color: var(--bg-page);
   color: var(--text-primary);
   min-height: 100dvh;
   overflow-x: hidden;
@@ -27,56 +28,131 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Skip-to-content ── */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  left: var(--space-4);
+  top: var(--space-4);
+  width: auto;
+  height: auto;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: var(--text-inverse);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
+}
+
 /* ── App shell ── */
 .app-shell {
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
 }
 
 /*
-  Body = sidebar + main, in a row.
-  The header is NOT inside app-body — it sits above.
-  app-body grows to fill remaining viewport height.
+  app-body = sidebar (fixed) + app-main (scrollable content).
+  margin-top offsets the fixed header (64px).
 */
 .app-body {
   display: flex;
   flex: 1;
-  /* Offset the fixed header (64px) */
   margin-top: 64px;
   min-height: calc(100dvh - 64px);
   position: relative;
+  background-color: var(--bg-page);
 }
 
-/* Main content area */
+/* ── Main content column ── */
 .app-main {
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  /* On desktop, offset for the fixed sidebar width */
+  /* Push right of the fixed sidebar on desktop */
   margin-left: 260px;
+  background-color: var(--bg-page);
   transition: margin-left var(--transition-normal);
 }
 
 .app-page {
   flex: 1;
+  background-color: var(--bg-page);
 }
 
-/* ── When sidebar is open on mobile ── */
+/* ── Mobile: no sidebar push ── */
 @media (max-width: 1024px) {
   .app-main {
     margin-left: 0;
   }
-
-  /* Prevent body scroll when sidebar is open */
-  .app-body--sidebar-open body {
-    overflow: hidden;
-  }
 }
 
-/* Reduced motion */
+/* ── Body scroll lock when sidebar overlay is open ── */
+body.sidebar-lock {
+  overflow: hidden;
+}
+
+/* ── Scrollbar (global, theme-aware) ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+/* ── Focus visible global ── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ── Selection ── */
+::selection {
+  background: var(--color-primary);
+  color: var(--text-inverse);
+}
+
+/* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
   .app-main {
     transition: none;
   }

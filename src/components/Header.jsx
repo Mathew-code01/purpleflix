@@ -4,8 +4,8 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useTheme } from "../theme";
 import { Search, Sun, Moon, Menu, X } from "lucide-react";
-import logoLight from "../assets/images/logo-light.svg";
-import logoDark  from "../assets/images/logo-dark.svg";
+import logoLight from "../assets/images/logo-light.png";
+import logoDark  from "../assets/images/logo-dark.png";
 import "../styles/Header.css";
 
 export default function Header({ onToggleSidebar, sidebarOpen, setSearchQuery }) {

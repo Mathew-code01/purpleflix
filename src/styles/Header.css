@@ -9,17 +9,24 @@
 .hdr-root {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 260px;
   right: 0;
+
   height: 64px;
+
   z-index: var(--z-header);
+
   background: var(--bg-header);
+
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid transparent;
+
+  border-bottom:1px solid transparent;
+
   transition:
+    left var(--transition-normal),
     border-color var(--transition-fast),
-    box-shadow  var(--transition-fast);
+    box-shadow var(--transition-fast);
 }
 
 .hdr-root--scrolled {
@@ -206,11 +213,17 @@
   outline-offset: 2px;
 }
 
-/* Hamburger — always visible, controls overlay sidebar on all widths */
 .hdr-hamburger {
-  /* Show on all widths — sidebar is overlay on mobile,
-     the sidebar itself handles its fixed position on desktop */
-  display: flex;
+ display:none;
+}
+
+
+@media(max-width:1024px){
+
+.hdr-hamburger{
+ display:flex;
+}
+
 }
 
 /* Hamburger active state */
@@ -250,4 +263,17 @@
   .hdr-icon-btn {
     transition: none;
   }
+}
+
+/* ======================================
+   TABLET + MOBILE HEADER
+====================================== */
+
+@media(max-width:1024px){
+
+.hdr-root{
+  left:0;
+}
+
+
 }

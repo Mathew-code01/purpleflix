@@ -2,27 +2,36 @@
 // src/App.jsx
 
 // src/App.jsx
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useNavigate,
 } from "react-router-dom";
-import Header    from "./components/Header";
-import Navbar    from "./components/Navbar";
-import Footer    from "./components/Footer";
-import Home      from "./pages/Home";
+import Header      from "./components/Header";
+import Navbar      from "./components/Navbar";
+import Footer      from "./components/Footer";
+import Home        from "./pages/Home";
 import MovieDetails from "./pages/MovieDetails";
 import "./styles/App.css";
 
-/* ── Inner router — needs useNavigate so lives inside <Router> ── */
 function AppShell() {
   const navigate = useNavigate();
 
   const [sidebarOpen,      setSidebarOpen]      = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchQuery,      setSearchQuery]      = useState("");
+
+  /* ── Body scroll lock ── */
+  useEffect(() => {
+    if (sidebarOpen) {
+      document.body.classList.add("sidebar-lock");
+    } else {
+      document.body.classList.remove("sidebar-lock");
+    }
+    return () => document.body.classList.remove("sidebar-lock");
+  }, [sidebarOpen]);
 
   const handleToggleSidebar = useCallback(
     () => setSidebarOpen((o) => !o),
@@ -55,14 +64,18 @@ function AppShell() {
 
   return (
     <div className="app-shell">
+      {/* Skip to main content (accessibility) */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+
       <Header
         onToggleSidebar={handleToggleSidebar}
         sidebarOpen={sidebarOpen}
         setSearchQuery={handleSearchChange}
       />
 
-      <div className={`app-body ${sidebarOpen ? "app-body--sidebar-open" : ""}`}>
-        {/* Sidebar nav */}
+      <div className="app-body">
         <Navbar
           isOpen={sidebarOpen}
           onClose={handleCloseSidebar}
@@ -70,8 +83,7 @@ function AppShell() {
           onSelectCategory={handleSelectCategory}
         />
 
-        {/* Main content column */}
-        <main className="app-main" id="main-content">
+        <main className="app-main" id="main-content" tabIndex={-1}>
           <div className="app-page">
             <Routes>
               <Route
@@ -86,7 +98,7 @@ function AppShell() {
               <Route path="/movie/:id" element={<MovieDetails />} />
             </Routes>
           </div>
-          <Footer />
+          <Footer onSelectCategory={handleSelectCategory} />
         </main>
       </div>
     </div>
